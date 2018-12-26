@@ -231,8 +231,21 @@ const Parser = function (_Writable) {
                     match = attributeRegexp.exec(attributesString);
                 }
                 return { name: name, attributes: attributes };
+            } else {
+                throw new Error(
+                    'cannot parse tag string: '+JSON.stringify(str)
+                );
             }
 
+        }
+    }, {
+        key: '_final',
+        value: function _final(callback) {
+            this.emit(EVENTS.UNPARSED_REMAIN, {
+                buffer: this.buffer,
+                pos: this.pos
+            });
+            callback && callback();
         }
     }]);
 
@@ -257,10 +270,11 @@ const TAG_TYPE = {
     SELF_CLOSING: 3
 };
 
-const EVENTS = exports.EVENTS = {
+const EVENTS = exports.EVENTS = Parser.EVENTS = {
     TEXT: 'text',
     INSTRUCTION: 'instruction',
     OPEN_TAG: 'opentag',
     CLOSE_TAG: 'closetag',
-    CDATA: 'cdata'
+    CDATA: 'cdata',
+    UNPARSED_REMAIN: 'unparsed_remain'
 };
