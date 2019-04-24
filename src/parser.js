@@ -46,7 +46,7 @@ function _inherits(subClass, superClass) {
 	if (typeof superClass !== 'function' && superClass !== null) {
 		throw new TypeError(
 			'Super expression must either be null or a function, not ' +
-        typeof superClass
+				typeof superClass
 		);
 	}
 	subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -137,15 +137,15 @@ const Parser = (function(_Writable) {
 						}
 						if (
 							this.buffer[this.pos - 3] === '<' &&
-                prev === '!' &&
-                c === '['
+								prev === '!' &&
+								c === '['
 						) {
 							this._onCDATAStart();
 						}
 						if (
 							this.buffer[this.pos - 3] === '<' &&
-                prev === '!' &&
-                c === '-'
+								prev === '!' &&
+								c === '-'
 						) {
 							this._onCommentStart();
 						}
@@ -168,8 +168,8 @@ const Parser = (function(_Writable) {
 					case STATE.IGNORE_COMMENT:
 						if (
 							this.buffer[this.pos - 3] === '-' &&
-                prev === '-' &&
-                c === '>'
+								prev === '-' &&
+								c === '>'
 						)
 							this._onCommentEnd();
 						break;
@@ -224,7 +224,7 @@ const Parser = (function(_Writable) {
 				if (this.tagType && this.tagType === TAG_TYPE.SELF_CLOSING) {
 					if (
 						Object.keys(attributes).length === 0 &&
-            attributes.constructor === Object
+						attributes.constructor === Object
 					) {
 						attributes = { ___selfClosing___: true };
 					}
@@ -301,10 +301,10 @@ const Parser = (function(_Writable) {
 			}
 
 			/**
-       * Helper to parse a tag string 'xml version="2.0" encoding="utf-8"' with regexp.
-       * @param  {string} str the tag string.
-       * @return {object}     {name, attributes}
-       */
+			 * Helper to parse a tag string 'xml version="2.0" encoding="utf-8"' with regexp.
+			 * @param  {string} str the tag string.
+			 * @return {object}     {name, attributes}
+			 */
 		},
 		{
 			key: '_parseTagString',
